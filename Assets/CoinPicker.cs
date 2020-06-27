@@ -5,7 +5,8 @@ using TMPro;
 
 public class CoinPicker : MonoBehaviour
 {
-    private float coin = 0;
+    public int coin = 0;
+
 
     public TextMeshProUGUI textCoins;
 

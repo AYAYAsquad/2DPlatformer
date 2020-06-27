@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-  float currentTime = 0.0f;
+  public float currentTime = 0.0f;
   float startingTime = 0.0f;
 
   [SerializeField] Text countdownText;
@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         currentTime += 1 * (Time.deltaTime);
         countdownText.text = currentTime.ToString("0.0");
