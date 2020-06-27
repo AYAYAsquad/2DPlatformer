@@ -8,12 +8,13 @@ public class End : MonoBehaviour
 {
   [SerializeField] private string sceneName;
 
+public int newScore;
+public int oldScore;
+public int newTime;
+public int oldTime;
   public CoinPicker cp;
   public Timer timer;
-  // void Start()
-  // {
-  //   cp = GameObject.FindGameObjectWithTag("CoinP");
-  // }
+
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.transform.tag == "Player")
@@ -26,7 +27,20 @@ public class End : MonoBehaviour
 
   public void SaveScore()
   {
-    PlayerPrefs.SetInt("Score", cp.coin);
-    PlayerPrefs.SetFloat("Time", timer.currentTime);
+    if ((PlayerPrefs.HasKey("Score")) || PlayerPrefs.HasKey("Time")){
+      oldScore = PlayerPrefs.GetInt("Score");
+      newScore = cp.coin;
+
+      if (newScore > oldScore){
+        PlayerPrefs.SetInt("Score", newScore);
+      }
+      else{
+        PlayerPrefs.SetInt("Score", oldScore);
+      }
+    }
+    else {
+      PlayerPrefs.SetInt("Score", cp.coin);
+      PlayerPrefs.SetFloat("Time", timer.currentTime);
+    }
   }
 }
