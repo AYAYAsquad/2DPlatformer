@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\CharacterController2D.cs" />
+     <Compile Include="Assets\CoinPicker.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\GameManager1.cs" />
