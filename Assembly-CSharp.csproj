@@ -40,6 +40,7 @@
      <Compile Include="Assets\CoinPicker.cs" />
      <Compile Include="Assets\End.cs" />
      <Compile Include="Assets\GameManager.cs" />
+     <Compile Include="Assets\HighscoreManager.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\GameManager1.cs" />
      <Compile Include="Assets\Timer.cs" />
