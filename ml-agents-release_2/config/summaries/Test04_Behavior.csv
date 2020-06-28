@@ -1,0 +1,3 @@
+Steps,Policy/Entropy,Policy/Extrinsic Value Estimate,Environment/Episode Length,Environment/Cumulative Reward,Policy/Extrinsic Reward,Losses/Value Loss,Losses/Policy Loss,Policy/Learning Rate,Is Training
+10000,4.9545293,-0.015815713,101.05102040816327,-1.0309278350515463,-1.0309278350515463,0.12365577,0.06742018,0.000299969,1.0
+20000,4.941077,-0.38231868,96.83,-1.0495049504950495,-1.0495049504950495,0.061015,0.06602432,0.00029991305,1.0

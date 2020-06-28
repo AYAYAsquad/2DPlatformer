@@ -1999,7 +1999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579697378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.08, y: -13.96, z: 23.952948}
+  m_LocalPosition: {x: 0.3, y: -9.9, z: 23.952948}
   m_LocalScale: {x: 0.53569853, y: 0.53809226, z: 1}
   m_Children: []
   m_Father: {fileID: 988218221}
@@ -3086,7 +3086,7 @@ GameObject:
   - component: {fileID: 983498545}
   m_Layer: 0
   m_Name: door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4512,6 +4512,7 @@ GameObject:
   - component: {fileID: 1395729140}
   - component: {fileID: 1395729142}
   - component: {fileID: 1395729141}
+  - component: {fileID: 1395729134}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4533,6 +4534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1395729136}
   animator: {fileID: 1395729139}
+  horizontalMove: 0
   runSpeed: 60
 --- !u!58 &1395729133
 CircleCollider2D:
@@ -4550,6 +4552,20 @@ CircleCollider2D:
   m_Offset: {x: -0.004928065, y: -0.090932645}
   serializedVersion: 2
   m_Radius: 0.067452066
+--- !u!114 &1395729134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395729131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 1
+  TakeActionsBetweenDecisions: 1
 --- !u!50 &1395729135
 Rigidbody2D:
   serializedVersion: 4
@@ -4583,6 +4599,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae87ab6f32aafb47bf43e1c2b996f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
   m_JumpForce: 300
   m_CrouchSpeed: 0.5
   m_MovementSmoothing: 0.05
@@ -4594,6 +4614,7 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 1167942333}
   m_CrouchDisableCollider: {fileID: 0}
   sceneName: SampleScene
+  horizontalMove: 0
   GameManager: {fileID: 631710645}
   OnLandEvent:
     m_PersistentCalls:
@@ -4622,7 +4643,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 0
 --- !u!212 &1395729137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4738,7 +4759,7 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 0
     NumStackedVectorObservations: 1
-    VectorActionSize: 0400000005000000050000000500000005000000
+    VectorActionSize: 0400000004000000030000000300000001000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
@@ -4765,9 +4786,9 @@ MonoBehaviour:
   - Door
   - Coin
   - Untagged
-  m_RaysPerDirection: 10
-  m_MaxRayDegrees: 90
-  m_SphereCastRadius: 1.15
+  m_RaysPerDirection: 20
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0
   m_RayLength: 30
   m_RayLayerMask:
     serializedVersion: 2

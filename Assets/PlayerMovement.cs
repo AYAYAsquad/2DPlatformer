@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
-    float horizontalMove = 0f;
+    public float horizontalMove = 0f;
     public float runSpeed = 40f;
     bool jump = false;
     bool crouch = false;
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     // void Start()
     // {
-        
+
     // }
 
     // Update is called once per frame

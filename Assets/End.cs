@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.MLAgents;
+
 
 public class End : MonoBehaviour
 {
@@ -44,7 +46,7 @@ public class End : MonoBehaviour
       else if (oldTime < newTime) {
         PlayerPrefs.SetFloat("Time", oldTime);
       }
-      
+
     }
     else {
       PlayerPrefs.SetInt("Score", cp.coin);
