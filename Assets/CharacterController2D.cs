@@ -68,7 +68,7 @@ public class CharacterController2D : Agent
       Move(1.0f, false, true);
     // jump l
     if (Mathf.FloorToInt(vectorAction[0]) == 3)
-      Move(-1.0f, false, true);
+      Move(1.0f, false, true);
     //jump courch
     if (Mathf.FloorToInt(vectorAction[0]) == 4)
       // Move(0.0f, true, true);
