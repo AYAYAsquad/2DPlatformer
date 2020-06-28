@@ -14,8 +14,8 @@ public class CoinPicker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if(other.CompareTag("Coin"))
+
+        if(other.transform.tag == "Coin")
         {
             coin += 1;
             other.gameObject.SetActive(false);
