@@ -4531,10 +4531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931e8d9ff5e38244f8fca28a929fdc9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
   controller: {fileID: 1395729136}
   animator: {fileID: 1395729139}
   runSpeed: 60
@@ -4587,6 +4583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae87ab6f32aafb47bf43e1c2b996f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
   m_JumpForce: 300
   m_CrouchSpeed: 0.5
   m_MovementSmoothing: 0.05
@@ -4742,7 +4742,7 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 0
     NumStackedVectorObservations: 1
-    VectorActionSize: 02000000
+    VectorActionSize: 0200000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
