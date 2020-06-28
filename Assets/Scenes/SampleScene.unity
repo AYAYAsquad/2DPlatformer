@@ -1999,7 +1999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579697378}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.08, y: -13.96, z: 23.952948}
+  m_LocalPosition: {x: 0.3, y: -9.9, z: 23.952948}
   m_LocalScale: {x: 0.53569853, y: 0.53809226, z: 1}
   m_Children: []
   m_Father: {fileID: 988218221}
@@ -4512,6 +4512,7 @@ GameObject:
   - component: {fileID: 1395729140}
   - component: {fileID: 1395729142}
   - component: {fileID: 1395729141}
+  - component: {fileID: 1395729134}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4551,6 +4552,20 @@ CircleCollider2D:
   m_Offset: {x: -0.004928065, y: -0.090932645}
   serializedVersion: 2
   m_Radius: 0.067452066
+--- !u!114 &1395729134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395729131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 1
+  TakeActionsBetweenDecisions: 1
 --- !u!50 &1395729135
 Rigidbody2D:
   serializedVersion: 4
@@ -4628,7 +4643,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 0
 --- !u!212 &1395729137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4744,7 +4759,7 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 0
     NumStackedVectorObservations: 1
-    VectorActionSize: 02000000020000000200000002000000
+    VectorActionSize: 0400000004000000030000000300000001000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
@@ -4771,9 +4786,9 @@ MonoBehaviour:
   - Door
   - Coin
   - Untagged
-  m_RaysPerDirection: 10
-  m_MaxRayDegrees: 90
-  m_SphereCastRadius: 1.15
+  m_RaysPerDirection: 20
+  m_MaxRayDegrees: 180
+  m_SphereCastRadius: 0
   m_RayLength: 30
   m_RayLayerMask:
     serializedVersion: 2

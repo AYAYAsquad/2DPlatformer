@@ -60,14 +60,59 @@ public class CharacterController2D : Agent
 
   public override void OnActionReceived(float[] vectorAction)
   {
+    //jump n
     if (Mathf.FloorToInt(vectorAction[0]) == 1)
       Move(0.0f, false, true);
-    else if (Mathf.FloorToInt(vectorAction[1]) == 1)
-      Move(0.0f, true, false);
-    else if (Mathf.FloorToInt(vectorAction[2]) == 1)
+    // jump r
+    if (Mathf.FloorToInt(vectorAction[0]) == 2)
+      Move(1.0f, false, true);
+    // jump l
+    if (Mathf.FloorToInt(vectorAction[0]) == 3)
+      Move(-1.0f, false, true);
+    //jump courch
+    if (Mathf.FloorToInt(vectorAction[0]) == 4)
+      // Move(0.0f, true, true);
+
+
+
+
+    //crouch n
+    if (Mathf.FloorToInt(vectorAction[1]) == 1)
+      // Move(0.0f, true, false);
+    //crouch r
+    if (Mathf.FloorToInt(vectorAction[1]) == 2)
+      // Move(1.0f, true, false);
+    //crouch l
+    if (Mathf.FloorToInt(vectorAction[1]) == 3)
+      // Move(-1.0f, true, false);
+    //crouch j
+    if (Mathf.FloorToInt(vectorAction[1]) == 4)
+      // Move(0.0f, true, true);
+
+
+    //right
+    if (Mathf.FloorToInt(vectorAction[2]) == 1)
       Move(1.0f, false, false);
-    else if (Mathf.FloorToInt(vectorAction[3]) == 1)
-      Move(-1.0f, false, false);
+    //right j
+    if (Mathf.FloorToInt(vectorAction[2]) == 2)
+      Move(1.0f, false, true);
+    //right c
+    if (Mathf.FloorToInt(vectorAction[2]) == 3)
+      // Move(1.0f, true, false);
+
+    //left
+    if (Mathf.FloorToInt(vectorAction[3]) == 1)
+      Move(1.0f, false, false);
+    //left j
+    if (Mathf.FloorToInt(vectorAction[3]) == 2)
+      Move(1.0f, false, true);
+    //left c
+    if (Mathf.FloorToInt(vectorAction[3]) == 3)
+      // Move(1.0f, true, false);
+
+    //nothing
+    if (Mathf.FloorToInt(vectorAction[4]) == 1)
+      Move(0.0f, false, false);
 
   }
 
@@ -77,26 +122,52 @@ public class CharacterController2D : Agent
     actionsOut[1] = 0;
     actionsOut[2] = 0;
     actionsOut[3] = 0;
+    actionsOut[4] = 0;
 
 
 
 
-    if (Input.GetButton("Up"))
+    if (Input.GetButton("Jump"))
+    {
       actionsOut[0] = 1;
+      actionsOut[1] = 4;
+      actionsOut[2] = 2;
+      actionsOut[3] = 2;
+    }
 
-    if (Input.GetKeyDown("Down"))
-      actionsOut[1] = 1;
-    if (Input.GetKeyDown("Right"))
+
+    // if (Input.GetKeyDown("down"))
+    // {
+    //   actionsOut[0] = 4;
+    //   actionsOut[1] = 1;
+    //   actionsOut[2] = 3;
+    //   actionsOut[3] = 3;
+    // }
+
+    if (Input.GetKeyDown("right"))
     {
       horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
       // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
       actionsOut[2] = 1;
+      actionsOut[0] = 2;
+      actionsOut[1] = 2;
+
     }
-    if (Input.GetKeyDown("Left"))
+    if (Input.GetKeyDown("left"))
     {
       horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
       // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
       actionsOut[3] = 1;
+      actionsOut[0] = 3;
+      actionsOut[1] = 3;
+    }
+    else
+    {
+      actionsOut[4] = 1;
+      actionsOut[3] = 1;
+      actionsOut[2] = 1;
+      actionsOut[1] = 1;
+      actionsOut[0] = 1;
     }
 
   }
@@ -217,12 +288,13 @@ public class CharacterController2D : Agent
     if (other.gameObject.tag == "KillBox")
     {
       // GameManager.RestartGame();
-      AddReward(-1.0f);
+      AddReward(-2.0f);
       EndEpisode();
       SceneManager.LoadScene(sceneName);
 
     }
-    else if (other.gameObject.tag == "Coin"){
+    if (other.gameObject.tag == "Coin")
+    {
       AddReward(0.3f);
     }
   }
