@@ -4511,6 +4511,8 @@ GameObject:
   - component: {fileID: 1395729132}
   - component: {fileID: 1395729139}
   - component: {fileID: 1395729140}
+  - component: {fileID: 1395729142}
+  - component: {fileID: 1395729141}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4748,6 +4750,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: 0
   textCoins: {fileID: 586249336}
+--- !u!114 &1395729141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395729131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 0
+    NumStackedVectorObservations: 1
+    VectorActionSize: 0000000000000000000000000000000000000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: Behavior
+  TeamId: 0
+  m_UseChildSensors: 1
+--- !u!114 &1395729142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395729131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67c7e722ba14acd9153bb4488bff6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: PlayerRaySensor
+  m_DetectableTags:
+  - KillBox
+  - Door
+  - Coin
+  - Untagged
+  m_RaysPerDirection: 10
+  m_MaxRayDegrees: 90
+  m_SphereCastRadius: 1.15
+  m_RayLength: 30
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 10
+  rayHitColor: {r: 0.6037736, g: 0.48131007, b: 0.48131007, a: 1}
+  rayMissColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1455537674
 GameObject:
   m_ObjectHideFlags: 0

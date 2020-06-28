@@ -151,7 +151,7 @@ public class CharacterController2D : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D other) {
 		if(other.gameObject.tag == "KillBox") {
 			// GameManager.RestartGame();
-      SceneManager.LoadScene(sceneName);
+      		SceneManager.LoadScene(sceneName);
 
 		}
 	}
