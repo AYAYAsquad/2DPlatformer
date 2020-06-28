@@ -8,10 +8,10 @@ public class End : MonoBehaviour
 {
   [SerializeField] private string sceneName;
 
-public int newScore;
-public int oldScore;
-public int newTime;
-public int oldTime;
+  public int newScore;
+  public int oldScore;
+  public float newTime;
+  public float oldTime;
   public CoinPicker cp;
   public Timer timer;
 
@@ -29,18 +29,26 @@ public int oldTime;
   {
     if ((PlayerPrefs.HasKey("Score")) || PlayerPrefs.HasKey("Time")){
       oldScore = PlayerPrefs.GetInt("Score");
+      oldTime = PlayerPrefs.GetFloat("Time");
       newScore = cp.coin;
 
       if (newScore > oldScore){
         PlayerPrefs.SetInt("Score", newScore);
       }
-      else{
+      else if (oldScore > newScore){
         PlayerPrefs.SetInt("Score", oldScore);
       }
+      if (newTime < oldTime) {
+        PlayerPrefs.SetFloat("Time", timer.currentTime);
+      }
+      else if (oldTime < newTime) {
+        PlayerPrefs.SetFloat("Time", oldTime);
+      }
+      
     }
     else {
       PlayerPrefs.SetInt("Score", cp.coin);
-      PlayerPrefs.SetFloat("Time", timer.currentTime);
+      // PlayerPrefs.SetFloat("Time", timer.currentTime);
     }
   }
 }

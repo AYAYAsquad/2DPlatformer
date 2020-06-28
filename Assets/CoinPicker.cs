@@ -6,17 +6,20 @@ using TMPro;
 public class CoinPicker : MonoBehaviour
 {
     public int coin = 0;
-
-
     public TextMeshProUGUI textCoins;
+
+    private void Update () {
+        textCoins.text = coin.ToString();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-    if(other.transform.tag == "Coin")
+        
+        if(other.CompareTag("Coin"))
         {
-            coin = coin + 1;
-            textCoins.text = coin.ToString();
-            Destroy(other.gameObject);
+            coin += 1;
+            other.gameObject.SetActive(false);
         }
+
     }
 }
