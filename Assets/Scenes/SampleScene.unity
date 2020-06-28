@@ -3086,7 +3086,7 @@ GameObject:
   - component: {fileID: 983498545}
   m_Layer: 0
   m_Name: door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4533,6 +4533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1395729136}
   animator: {fileID: 1395729139}
+  horizontalMove: 0
   runSpeed: 60
 --- !u!58 &1395729133
 CircleCollider2D:
@@ -4598,6 +4599,7 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 1167942333}
   m_CrouchDisableCollider: {fileID: 0}
   sceneName: SampleScene
+  horizontalMove: 0
   GameManager: {fileID: 631710645}
   OnLandEvent:
     m_PersistentCalls:
@@ -4742,7 +4744,7 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 0
     NumStackedVectorObservations: 1
-    VectorActionSize: 0200000002000000
+    VectorActionSize: 02000000020000000200000002000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}

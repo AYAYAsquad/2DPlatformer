@@ -9,6 +9,7 @@ using Unity.MLAgents.Sensors;
 
 public class CharacterController2D : Agent
 {
+  // public Animator animator;
   [SerializeField] private float m_JumpForce = 400f;              // Amount of force added when the player jumps.
   [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;      // Amount of maxSpeed applied to crouching movement. 1 = 100%
   [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
@@ -25,6 +26,8 @@ public class CharacterController2D : Agent
   private Rigidbody2D m_Rigidbody2D;
   private bool m_FacingRight = true;  // For determining which way the player is currently facing.
   private Vector3 m_Velocity = Vector3.zero;
+
+  public float horizontalMove;
 
   public GameManager1 GameManager;
 
@@ -61,18 +64,41 @@ public class CharacterController2D : Agent
       Move(0.0f, false, true);
     else if (Mathf.FloorToInt(vectorAction[1]) == 1)
       Move(0.0f, true, false);
+    else if (Mathf.FloorToInt(vectorAction[2]) == 1)
+      Move(1.0f, false, false);
+    else if (Mathf.FloorToInt(vectorAction[3]) == 1)
+      Move(-1.0f, false, false);
+
   }
 
   public override void Heuristic(float[] actionsOut)
   {
     actionsOut[0] = 0;
     actionsOut[1] = 0;
+    actionsOut[2] = 0;
+    actionsOut[3] = 0;
 
-    if (Input.GetButton("Jump"))
+
+
+
+    if (Input.GetButton("Up"))
       actionsOut[0] = 1;
 
-    if (Input.GetButtonDown("Crouch"))
+    if (Input.GetKeyDown("Down"))
       actionsOut[1] = 1;
+    if (Input.GetKeyDown("Right"))
+    {
+      horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
+      // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+      actionsOut[2] = 1;
+    }
+    if (Input.GetKeyDown("Left"))
+    {
+      horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
+      // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+      actionsOut[3] = 1;
+    }
+
   }
 
   public override void OnEpisodeBegin()
@@ -191,6 +217,8 @@ public class CharacterController2D : Agent
     if (other.gameObject.tag == "KillBox")
     {
       // GameManager.RestartGame();
+      AddReward(-1.0f);
+      EndEpisode();
       SceneManager.LoadScene(sceneName);
 
     }
