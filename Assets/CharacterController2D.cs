@@ -295,7 +295,7 @@ public class CharacterController2D : Agent
     }
     if (other.gameObject.tag == "Coin")
     {
-      AddReward(0.3f);
+      AddReward(1.0f);
     }
   }
 }
