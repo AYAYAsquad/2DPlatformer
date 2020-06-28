@@ -1,80 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
 
-public class PlayerMovement : Agent
+public class PlayerMovement : MonoBehaviour
 {
 
-  public CharacterController2D controller;
-  public Animator animator;
+    public CharacterController2D controller;
+    public Animator animator;
 
-  float horizontalMove = 0f;
-  public float runSpeed = 40f;
-  bool jump = false;
-  bool crouch = false;
+    public float horizontalMove = 0f;
+    public float runSpeed = 40f;
+    bool jump = false;
+    bool crouch = false;
 
-  public override void Initialize()
-  {
+    // Start is called before the first frame update
+    // void Start()
+    // {
 
-  }
-  public override void OnActionReceived(float[] vectorAction)
-  {
-    if (Mathf.FloorToInt(vectorAction[0]) == 1)
+    // }
+
+    // Update is called once per frame
+    void Update()
     {
-      jump = true;
-      animator.SetBool("IsJumping", true);
-    }
-  }
-  public override void OnEpisodeBegin()
-  {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-  }
+        if(Input.GetButton("Jump")) {
+            jump = true;
+            animator.SetBool("IsJumping", true);
+        }
 
-  public override void Heuristic(float[] actionsOut)
-  {
-    actionsOut[0] = 0;
-    horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-    animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-
-    if (Input.GetButton("Jump"))
-    {
-      actionsOut[0] = 1;
-      animator.SetBool("IsJumping", true);
+        if(Input.GetButtonDown("Crouch")) {
+            crouch = true;
+        } else if (Input.GetButtonUp("Crouch")) {
+            crouch = false;
+        }
     }
 
-    if (Input.GetButtonDown("Crouch"))
-    {
-      crouch = true;
+    public void OnLanding () {
+        animator.SetBool("IsJumping", false);
     }
-    else if (Input.GetButtonUp("Crouch"))
-    {
-      crouch = false;
+
+    public void OnCrouching (bool isCrouching) {
+        animator.SetBool("IsCrouching", isCrouching);
     }
-  }
 
+    void FixedUpdate() {
+        // Moving our character
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        jump = false;
 
-  public void OnLanding()
-  {
-    animator.SetBool("IsJumping", false);
-  }
-
-  public void OnCrouching(bool isCrouching)
-  {
-    animator.SetBool("IsCrouching", isCrouching);
-  }
-
-  void FixedUpdate()
-  {
-    // Moving our character
-    controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-    jump = false;
-
-  }
-
-
-
-
-
+    }
 }
