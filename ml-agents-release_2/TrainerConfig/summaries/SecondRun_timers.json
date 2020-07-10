@@ -1,0 +1,46 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1593363072",
+        "python_version": "3.7.7 (default, Mar 16 2020, 01:06:51) [MSC v.1900 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\admr6\\.conda\\envs\\ml-agents-2d\\Scripts\\mlagents-learn trainer_config.yaml --run-id=SecondRun --num-envs=10",
+        "mlagents_version": "0.16.1",
+        "mlagents_envs_version": "0.16.1",
+        "communication_protocol_version": "1.0.0",
+        "tensorflow_version": "2.2.0",
+        "end_time_seconds": "1593363082"
+    },
+    "total": 9.964932600000001,
+    "count": 1,
+    "self": 0.21956530000000285,
+    "children": {
+        "run_training.setup": {
+            "total": 0.036593399999999665,
+            "count": 1,
+            "self": 0.036593399999999665
+        },
+        "TrainerController.start_learning": {
+            "total": 9.708773899999999,
+            "count": 1,
+            "self": 0.0007872999999989361,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 9.707598800000001,
+                    "count": 1,
+                    "self": 9.707598800000001
+                },
+                "trainer_threads": {
+                    "total": 1.1999999998124622e-06,
+                    "count": 1,
+                    "self": 1.1999999998124622e-06
+                },
+                "TrainerController._save_model": {
+                    "total": 0.00038659999999879346,
+                    "count": 1,
+                    "self": 0.00038659999999879346
+                }
+            }
+        }
+    }
+}
