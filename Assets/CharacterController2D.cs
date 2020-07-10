@@ -28,6 +28,7 @@ public class CharacterController2D : Agent
   private Vector3 m_Velocity = Vector3.zero;
 
   public float horizontalMove;
+  public Timer timer;
 
   public GameManager1 GameManager;
 
@@ -60,14 +61,62 @@ public class CharacterController2D : Agent
 
   public override void OnActionReceived(float[] vectorAction)
   {
+    //jump n
     if (Mathf.FloorToInt(vectorAction[0]) == 1)
       Move(0.0f, false, true);
-    else if (Mathf.FloorToInt(vectorAction[1]) == 1)
-      Move(0.0f, true, false);
-    else if (Mathf.FloorToInt(vectorAction[2]) == 1)
+
+    // jump r
+    if (Mathf.FloorToInt(vectorAction[0]) == 2)
+      Move(1.0f, false, true);
+
+    // jump l
+    if (Mathf.FloorToInt(vectorAction[0]) == 3)
+      Move(1.0f, false, true);
+
+    //jump courch
+    if (Mathf.FloorToInt(vectorAction[0]) == 4)
+    // Move(0.0f, true, true);
+
+    //crouch n
+    if (Mathf.FloorToInt(vectorAction[1]) == 1)
+    // Move(0.0f, true, false);
+
+    //crouch r
+    if (Mathf.FloorToInt(vectorAction[1]) == 2)
+    // Move(1.0f, true, false);
+    //crouch l
+    if (Mathf.FloorToInt(vectorAction[1]) == 3)
+    // Move(-1.0f, true, false);
+    //crouch j
+    if (Mathf.FloorToInt(vectorAction[1]) == 4)
+    // Move(0.0f, true, true);
+    //right
+    if (Mathf.FloorToInt(vectorAction[2]) == 1)
       Move(1.0f, false, false);
-    else if (Mathf.FloorToInt(vectorAction[3]) == 1)
-      Move(-1.0f, false, false);
+
+
+    //right j
+    if (Mathf.FloorToInt(vectorAction[2]) == 2)
+      Move(1.0f, false, true);
+    //right c
+    if (Mathf.FloorToInt(vectorAction[2]) == 3)
+      // Move(1.0f, true, false);
+
+    //left
+    if (Mathf.FloorToInt(vectorAction[3]) == 1)
+      Move(1.0f, false, false);
+
+    //left j
+    if (Mathf.FloorToInt(vectorAction[3]) == 2)
+      Move(1.0f, false, true);
+
+    //left c
+    if (Mathf.FloorToInt(vectorAction[3]) == 3)
+      // Move(1.0f, true, false);
+
+    //nothing
+    if (Mathf.FloorToInt(vectorAction[4]) == 1)
+      Move(0.0f, false, false);
 
   }
 
@@ -77,26 +126,38 @@ public class CharacterController2D : Agent
     actionsOut[1] = 0;
     actionsOut[2] = 0;
     actionsOut[3] = 0;
+    actionsOut[4] = 0;
 
-
-
-
-    if (Input.GetButton("Up"))
+    if (Input.GetButton("Jump"))
+    {
       actionsOut[0] = 1;
-
-    if (Input.GetKeyDown("Down"))
-      actionsOut[1] = 1;
-    if (Input.GetKeyDown("Right"))
-    {
-      horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
-      // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-      actionsOut[2] = 1;
+      actionsOut[1] = 4;
+      actionsOut[2] = 2;
+      actionsOut[3] = 2;
     }
-    if (Input.GetKeyDown("Left"))
+
+    if (Input.GetKeyDown("right"))
     {
       horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
-      // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+      actionsOut[2] = 1;
+      actionsOut[0] = 2;
+      actionsOut[1] = 2;
+
+    }
+    if (Input.GetKeyDown("left"))
+    {
+      horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
       actionsOut[3] = 1;
+      actionsOut[0] = 3;
+      actionsOut[1] = 3;
+    }
+    else
+    {
+      actionsOut[4] = 1;
+      actionsOut[3] = 1;
+      actionsOut[2] = 1;
+      actionsOut[1] = 1;
+      actionsOut[0] = 1;
     }
 
   }
@@ -211,19 +272,39 @@ public class CharacterController2D : Agent
     theScale.x *= -1;
     transform.localScale = theScale;
   }
+  private void OnTriggerEnter2D(Collider2D other)
+  {
 
+    if (other.transform.tag == "Coin")
+    {
+      AddReward(0.5f);
+      Debug.Log("Coin + 0.5");
+
+    }
+    if (other.transform.tag == "gap")
+    {
+      AddReward(0.3f);
+      Debug.Log("Jumped gap + 0.3");
+    }
+    if (other.gameObject.tag == "Door")
+    {
+      AddReward(1.0f);
+      EndEpisode();
+      Debug.Log("Door + 1.0");
+    }
+
+  }
   void OnCollisionEnter2D(Collision2D other)
   {
+
     if (other.gameObject.tag == "KillBox")
     {
       // GameManager.RestartGame();
       AddReward(-1.0f);
       EndEpisode();
-      SceneManager.LoadScene(sceneName);
+      Debug.Log("Killbox -1.0");
 
-    }
-    else if (other.gameObject.tag == "Coin"){
-      AddReward(0.3f);
+      SceneManager.LoadScene(sceneName);
     }
   }
 }
