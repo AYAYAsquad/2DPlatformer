@@ -23,6 +23,7 @@ public class End : MonoBehaviour
     {
       SaveScore();
       SceneManager.LoadScene(sceneName);
+      Debug.Log(timer.currentTime);
 
     }
   }
@@ -33,6 +34,7 @@ public class End : MonoBehaviour
       oldScore = PlayerPrefs.GetInt("Score");
       oldTime = PlayerPrefs.GetFloat("Time");
       newScore = cp.coin;
+      newTime = timer.currentTime;
 
       if (newScore > oldScore){
         PlayerPrefs.SetInt("Score", newScore);
@@ -41,7 +43,7 @@ public class End : MonoBehaviour
         PlayerPrefs.SetInt("Score", oldScore);
       }
       if (newTime < oldTime) {
-        PlayerPrefs.SetFloat("Time", timer.currentTime);
+        PlayerPrefs.SetFloat("Time", newTime);
       }
       else if (oldTime < newTime) {
         PlayerPrefs.SetFloat("Time", oldTime);
@@ -50,7 +52,7 @@ public class End : MonoBehaviour
     }
     else {
       PlayerPrefs.SetInt("Score", cp.coin);
-      // PlayerPrefs.SetFloat("Time", timer.currentTime);
+      PlayerPrefs.SetFloat("Time", timer.currentTime);
     }
   }
 }

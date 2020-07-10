@@ -28,6 +28,7 @@ public class CharacterController2D : Agent
   private Vector3 m_Velocity = Vector3.zero;
 
   public float horizontalMove;
+  public Timer timer;
 
   public GameManager1 GameManager;
 
@@ -63,67 +64,59 @@ public class CharacterController2D : Agent
     //jump n
     if (Mathf.FloorToInt(vectorAction[0]) == 1)
       Move(0.0f, false, true);
-    // Debug.Log("jump n");
+
     // jump r
     if (Mathf.FloorToInt(vectorAction[0]) == 2)
       Move(1.0f, false, true);
-    // AddReward(-0.002f);
-    // Debug.Log("-0.002");
-    // Debug.Log("jump r");
+
     // jump l
     if (Mathf.FloorToInt(vectorAction[0]) == 3)
       Move(1.0f, false, true);
-    // Debug.Log("jump l");
+
     //jump courch
     if (Mathf.FloorToInt(vectorAction[0]) == 4)
-      // Move(0.0f, true, true);
+    // Move(0.0f, true, true);
+
+    //crouch n
+    if (Mathf.FloorToInt(vectorAction[1]) == 1)
+    // Move(0.0f, true, false);
+
+    //crouch r
+    if (Mathf.FloorToInt(vectorAction[1]) == 2)
+    // Move(1.0f, true, false);
+    //crouch l
+    if (Mathf.FloorToInt(vectorAction[1]) == 3)
+    // Move(-1.0f, true, false);
+    //crouch j
+    if (Mathf.FloorToInt(vectorAction[1]) == 4)
+    // Move(0.0f, true, true);
+    //right
+    if (Mathf.FloorToInt(vectorAction[2]) == 1)
+      Move(1.0f, false, false);
 
 
-
-
-      //crouch n
-      if (Mathf.FloorToInt(vectorAction[1]) == 1)
-        // Move(0.0f, true, false);
-        // Debug.Log("Cruoch");
-        //crouch r
-        if (Mathf.FloorToInt(vectorAction[1]) == 2)
-          // Move(1.0f, true, false);
-          //crouch l
-          if (Mathf.FloorToInt(vectorAction[1]) == 3)
-            // Move(-1.0f, true, false);
-            //crouch j
-            if (Mathf.FloorToInt(vectorAction[1]) == 4)
-              // Move(0.0f, true, true);
-
-
-              //right
-              if (Mathf.FloorToInt(vectorAction[2]) == 1)
-                Move(1.0f, false, false);
-
-    // Debug.Log("R");
     //right j
     if (Mathf.FloorToInt(vectorAction[2]) == 2)
       Move(1.0f, false, true);
-    // Debug.Log("R J");
     //right c
     if (Mathf.FloorToInt(vectorAction[2]) == 3)
       // Move(1.0f, true, false);
 
-      //left
-      if (Mathf.FloorToInt(vectorAction[3]) == 1)
-        Move(1.0f, false, false);
-    // Debug.Log("L");
+    //left
+    if (Mathf.FloorToInt(vectorAction[3]) == 1)
+      Move(1.0f, false, false);
+
     //left j
     if (Mathf.FloorToInt(vectorAction[3]) == 2)
       Move(1.0f, false, true);
-    // Debug.Log("L J");
+
     //left c
     if (Mathf.FloorToInt(vectorAction[3]) == 3)
       // Move(1.0f, true, false);
 
-      //nothing
-      if (Mathf.FloorToInt(vectorAction[4]) == 1)
-        Move(0.0f, false, false);
+    //nothing
+    if (Mathf.FloorToInt(vectorAction[4]) == 1)
+      Move(0.0f, false, false);
 
   }
 
@@ -135,9 +128,6 @@ public class CharacterController2D : Agent
     actionsOut[3] = 0;
     actionsOut[4] = 0;
 
-
-
-
     if (Input.GetButton("Jump"))
     {
       actionsOut[0] = 1;
@@ -146,19 +136,9 @@ public class CharacterController2D : Agent
       actionsOut[3] = 2;
     }
 
-
-    // if (Input.GetKeyDown("down"))
-    // {
-    //   actionsOut[0] = 4;
-    //   actionsOut[1] = 1;
-    //   actionsOut[2] = 3;
-    //   actionsOut[3] = 3;
-    // }
-
     if (Input.GetKeyDown("right"))
     {
       horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
-      // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
       actionsOut[2] = 1;
       actionsOut[0] = 2;
       actionsOut[1] = 2;
@@ -167,7 +147,6 @@ public class CharacterController2D : Agent
     if (Input.GetKeyDown("left"))
     {
       horizontalMove = Input.GetAxisRaw("Horizontal") * 40f;
-      // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
       actionsOut[3] = 1;
       actionsOut[0] = 3;
       actionsOut[1] = 3;
@@ -302,10 +281,10 @@ public class CharacterController2D : Agent
       Debug.Log("Coin + 0.5");
 
     }
-    if (other.gameObject.tag == "gap")
+    if (other.transform.tag == "gap")
     {
-      AddReward(0.1f);
-      Debug.Log("Jumped gap + 0.1");
+      AddReward(0.3f);
+      Debug.Log("Jumped gap + 0.3");
     }
     if (other.gameObject.tag == "Door")
     {
@@ -321,14 +300,11 @@ public class CharacterController2D : Agent
     if (other.gameObject.tag == "KillBox")
     {
       // GameManager.RestartGame();
-      AddReward(-0.1f);
+      AddReward(-1.0f);
       EndEpisode();
-      Debug.Log("Killbox -0.1");
+      Debug.Log("Killbox -1.0");
 
       SceneManager.LoadScene(sceneName);
-
     }
-
-
   }
 }
